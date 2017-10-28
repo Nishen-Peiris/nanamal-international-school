@@ -1,0 +1,160 @@
+/*
+	960 Grid System ~ Text CSS.
+	Learn more ~ http://960.gs/
+
+	Licensed under GPL and MIT.
+*/
+
+/* =Basic HTML
+--------------------------------------------------------------------------------*/
+
+body
+{
+	font: 13px/1.5 Tahoma, Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+}
+
+a:focus
+{
+	outline: 1px dotted invert;
+}
+
+hr
+{
+	border-color: #ccc;
+	border-style: solid;
+	border-width: 1px 0 0;
+	clear: both;
+	height: 0;
+}
+
+/* =Headings
+--------------------------------------------------------------------------------*/
+
+h1
+{
+	font-size: 25px;
+}
+
+h2
+{
+	font-size: 23px;
+}
+
+h3
+{
+	font-size: 21px;
+}
+
+h4
+{
+	font-size: 19px;
+}
+
+h5
+{
+	font-size: 17px;
+}
+
+h6
+{
+	font-size: 15px;
+}
+
+/* =Spacing
+--------------------------------------------------------------------------------*/
+
+ol
+{
+	list-style: decimal;
+}
+
+ul
+{
+	list-style: square;
+}
+
+li
+{
+	margin-left: 30px;
+}
+
+p,
+dl,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+ul,
+pre,
+table,
+address,
+fieldset
+{
+	margin-bottom: 20px;
+}
+
+.panel-heading{
+	text-decoration: none;
+	font-size: 20px;
+}
+.panel-sub-heading{
+	text-decoration: none;
+	font-size: 15px;
+}
+.action_list{
+	list-style: none;
+	display: inline-flex;
+}
+.news_table_content{
+	margin-top: 50px;
+	color: #ffffff;
+	background-color: #298a98;
+
+}
+.news_table_content table {
+	font-size: 14px;
+}
+.news_table_content table td {
+	width: 10%;
+}
+
+.grade_container{
+	box-shadow: 0 4px 8px 0 rgba(31,120,172,0.3);
+	transition: 0.1s;
+	margin-right: 0px;
+	z-index: 2;
+	background: rgba(255, 255, 255, 0.1);
+	min-height: 120px;
+	border-top: hidden;
+	border: solid rgba(57,140,154,0.1) 1px;
+	border-radius: 2px;
+	margin-top: 25px;
+	width: 75%;
+	margin-left: 50px;
+
+	background: rgba(242,246,248,1);
+	background: -moz-linear-gradient(left, rgba(242,246,248,1) 0%, rgba(216,225,231,1) 50%, rgba(181,198,208,1) 51%, rgba(224,239,249,1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(242,246,248,1)), color-stop(50%, rgba(216,225,231,1)), color-stop(51%, rgba(181,198,208,1)), color-stop(100%, rgba(224,239,249,1)));
+	background: -webkit-linear-gradient(left, rgba(242,246,248,1) 0%, rgba(216,225,231,1) 50%, rgba(181,198,208,1) 51%, rgba(224,239,249,1) 100%);
+	background: -o-linear-gradient(left, rgba(242,246,248,1) 0%, rgba(216,225,231,1) 50%, rgba(181,198,208,1) 51%, rgba(224,239,249,1) 100%);
+	background: -ms-linear-gradient(left, rgba(242,246,248,1) 0%, rgba(216,225,231,1) 50%, rgba(181,198,208,1) 51%, rgba(224,239,249,1) 100%);
+	background: linear-gradient(to right, rgba(242,246,248,1) 0%, rgba(216,225,231,1) 50%, rgba(181,198,208,1) 51%, rgba(224,239,249,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9', GradientType=1 );
+}
+.dropdown_fixed{
+	width: 50%;
+
+}
+
+.result_row{
+	padding-bottom: 20px;
+	padding-top: 20px;
+	width: 50%;
+}
+.side_box{
+	margin-top: 20px;
+}
