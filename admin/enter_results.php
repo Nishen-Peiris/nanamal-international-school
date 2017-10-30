@@ -53,29 +53,30 @@ $grades = mysqli_query($db, $query);
                                   readonly="readonly" style="height: 34px; resize: none"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="email">Registration Number</label>
+                        <label for="email">Registration number</label>
                         <input type="text" class="form-control" id="registration_number" name="registration_number"
+                               required="required"
                                onkeyup="showStudentName(this.value)">
                     </div>
                     <div class="form-group">
-                        <label for="email">Please Select the Grade </label>
+                        <label>Select the grade </label>
                     </div>
                     <div class="form-group">
-                        <label for="email">Grade</label>
-                        <select class="dropdown_fixed" name="grade_list" id="grade_list">
-                            <?php while ($row1 = mysqli_fetch_array($grades)):; ?>
-                                <option value="<?php echo $row1[1] ?>"><?php echo $row1[1] ?></option>
-                            <?php endwhile; ?>
+                        <select class="dropdown_fixed" name="grade_list" id="grade_list" style="height: 34px">
+                            <?php
+                            echo "<option value=\"-1\">Please select a grade</option>"; // add the empty option at the begining of the grades list
+                            while ($row = mysqli_fetch_array($grades)):;
+                                echo "<option value=\"$row[1]\">$row[1]</option>";
+                            endwhile
+                            ?>
                         </select>
                     </div>
-                    <label for="email">Please fill the marks for each Subject </label>
-                    <div class="result_row ">
+                    <div class="result_row">
                         <div class="form-group subject_list " id="subject_list">
-                            <label for="email">Sinhala</label>
-                            <input type="text" class="form-control" name="subject_mark[]">
+                            <!-- subject list is loaded here -->
                         </div>
                     </div>
-                    <button class="btn btn-success" id="save_grade" name="submit">Save</button>
+                    <button class="btn btn-success" id="save_results" name="submit">Save</button>
                 </form>
             </div>
         </div>
@@ -85,6 +86,7 @@ $grades = mysqli_query($db, $query);
 <?php require_once('ad_footer.php'); ?>
 
 <script>
+    // load the list of subjects for the selected grade
     $(document).ready(function () {
         $('#grade_list').change(function () {
             var grade_id = $(this).val();

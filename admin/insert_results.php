@@ -1,63 +1,58 @@
-
 <?php
+include('../login/session.php');
 
-$server   = "localhost";
-$database = "nenamal";
-$username = "root";
-$password = "";
+$execute = true;
 
-$mysqlConnection = mysqli_connect($server, $username, $password, $database);
-if (!$mysqlConnection)
-{
+if (!$db) {
     echo "Please try later.";
+    exit();
 }
 
-$name = $_POST['name'];
-$reg_num = $_POST['reg_num'];
-$grade_list= $_POST['grade_list'];
-$subject_mark= $_POST['subject_mark'];
-$subject_id= $_POST['subject_id'];
-$length= count($_POST['subject_mark']);
-
-
-
-for($i=0; $i< $length; $i++){
-    $TestParameters=$_POST['subject_mark'][$i];
-    $TestParameters2=$_POST['subject_id'][$i];
-
-
-        $InsertQuery = "INSERT INTO results (reg_no, subject_id, marks) 
-        VALUES('','".$reg_num."','$TestParameters2','$TestParameters')";
-
-        $InsertQuery = "INSERT INTO student (reg_no, name, grade) 
-        VALUES('".$reg_num."','".$name."','".$grade_list."')";
-
+if (isset($_POST{'registration_number'})) {
+    $registration_number = $_POST{'registration_number'};
+    if ($_POST{'grade_list'} != -1) {
+        $grade = $_POST{'grade_list'};
+        if (isset($_POST['subject_results'])) {
+            $subject_results = $_POST['subject_results'];
+            $subject_IDs = $_POST['subject_IDs'];
+            $no_of_subjects = sizeof($subject_results);
+        } else {
+            echo "<script>
+        alert('Results of atleast one subject must be entered.');
+        window.location.href='enter_results.php';
+        </script>";
+            $execute = false;
+        }
+    } else {
+        echo "<script>
+        alert('Select the grade.');
+        window.location.href='enter_results.php';
+        </script>";
+        $execute = false;
+    }
+} else {
+    echo "<script>
+        alert('Enter the registration number.');
+        window.location.href='enter_results.php';
+        </script>";
+    $execute = false;
 }
 
-if ($reg_num !='' && $TestParameters2 !='' && $TestParameters !=''  && $mysqlConnection->query($InsertQuery) === TRUE) {
-
-    $message = "You have added results successfully";
-    echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "<script type='text/javascript'>window.location.href = 'enter_results.php';</script>";
-
+if ($execute) {
+    $count = 0;
+    for ($i = 0; $i < $no_of_subjects; $i++) {
+        if ($subject_results[$i] != "") {
+            $query = "INSERT INTO results (reg_no, grade, subject_id, marks)
+        VALUES('$registration_number', '$grade', '$subject_IDs[$i]', '$subject_results[$i]');";
+            if (mysqli_query($db, $query)) {
+                $count++;
+            }
+        }
+    }
+    echo "<script>
+        alert('$count records saved.');
+        window.location.href='enter_results.php';
+        </script>";
 }
-else {
-    $message2 = "Please fill all the fields";
-    echo "<script type='text/javascript'>alert('$message2');</script>";
-    echo "<script type='text/javascript'>window.location.href = 'enter_results.php';</script>";
-}
 
-
-
-
-$mysqlConnection->close();
-
-
-//    $id = mysqli_insert_id();
-//$sql = "INSERT INTO grade_six (id, reg_num, name, sinhala, english, maths, science, buddhism, tamil)
-//    VALUES('', '".$reg_num."', '".$name."','".$sinhala."','".$english."','".$maths."','".$science."','".$buddhism."','".$tamil."')";
-
-// execute query
-
-
-?>
+$db->close();
