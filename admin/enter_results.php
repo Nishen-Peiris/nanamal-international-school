@@ -104,8 +104,8 @@ $grades = mysqli_query($db, $query);
 
     // load student name from the database using the registration number
     function showStudentName(str) {
-        document.getElementById("student_name").innerText = "loading student name...";
         if (str != "") {
+            document.getElementById("student_name").innerText = "loading student name...";
             if (window.XMLHttpRequest) {
                 xmlhttp = new XMLHttpRequest(); // code for IE7+, Firefox, Chrome, Opera, Safari
             } else {
@@ -118,6 +118,8 @@ $grades = mysqli_query($db, $query);
             };
             xmlhttp.open("GET", "find_student_name.php?registration_number=" + str, true);
             xmlhttp.send();
+        } else {
+            document.getElementById("student_name").innerText = "";
         }
     }
 </script>
