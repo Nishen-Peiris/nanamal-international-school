@@ -1,39 +1,20 @@
 <?php
-$server   = "localhost";
-$database = "nenamal";
-$username = "root";
-$password = "";
+include('../login/session.php');
 
-$mysqlConnection = mysqli_connect($server, $username, $password, $database);
-if (!$mysqlConnection)
-{
-    echo "Please try later.";
+if (!$db) {
+    echo "Please try again later.";
+    exit();
 }
-$output='';
-$query="SELECT * FROM grade_subject,subjects WHERE grade = '".$_POST["gradeId"]."' AND grade_subject.subject_id= subjects.subject_id ";
 
-//$query="SELECT * FROM grade_subject WHERE grade =.'".$_POST["gradeId"]."' ORDER BY grade ";
-
-$results = mysqli_query($mysqlConnection, $query);
-
-//$output='<option value=" ">Select Subject</option>';
-//while($row= mysqli_fetch_array($results)){
-////    $output='<option value="'.$row["id"].'">"'.$row["subject_id"].'"</option>';
-//    $output='<option value .="'.$row["id"].'">"'.$row["subject_id"].'"</option>';
-//}
-//
-////if(!$results) die("Database Error...: " . mysqli_error());
-//echo $output;
-
-
-
-
+$query = "SELECT subjects.subject_id, subjects.subject FROM grade_subject, subjects WHERE grade = '" . $_POST["gradeId"] . "' AND grade_subject.subject_id = subjects.subject_id";
+$results = mysqli_query($db, $query);
 ?>
 
-<?php while($row= mysqli_fetch_array($results)):; ?>
-<div class="form-group subject_list" id="subject_list">
-       <label for="email"><?php echo $row['subject']; ?></label>
-    <input type="text" class="form-control" name="subject_mark[]">
-    <input type="text" class="hidden" name="subject_id[]">
-</div>
+    <label>Fill the marks for each subject </label>
+<?php while ($row = mysqli_fetch_array($results)):; ?>
+    <div class="form-group subject_list" id="subject_list">
+        <label for="subject"><?php echo $row['subject']; ?></label>
+        <input type="text" class="form-control" name="subject_results[]">
+        <input type="text" class="hidden" name="subject_IDs[]" value="<?= $row['subject_id'] ?>"/>
+    </div>
 <?php endwhile; ?>
