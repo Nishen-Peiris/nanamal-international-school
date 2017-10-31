@@ -47,8 +47,8 @@
                     <center><i class="fa fa-clipboard fa-2x" aria-hidden="true"></i><a href="enter_results.php"><span class="panel-heading">  Manage Results</span></a></center>
                 </div>
                 <ul class="action_list">
-                    <a href="enter_results.php"><li><i class="fa fa-plus fa-1x" aria-hidden="true"></i> <span class="panel-sub-heading">Add Results</span></li></a>
-                    <a><li><i class="fa fa-eye" aria-hidden="true"></i></i><span class="panel-sub-heading">View Results</span></li></a>
+                    <li><i class="fa fa-plus fa-1x" aria-hidden="true"></i><a href="enter_results.php"> <span class="panel-sub-heading">Add Results</span></a></li>
+                    <li><i class="fa fa-eye" aria-hidden="true"></i></i><a href="view_results.php"> <span class="panel-sub-heading">View Results</span></a></li>
                 </ul>
 
             </div>
