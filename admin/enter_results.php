@@ -58,7 +58,7 @@ $grades = mysqli_query($db, $query);
                                required="required"
                                onkeyup="showStudentName(this.value)">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group">E
                         <label>Select the grade</label>
                     </div>
                     <div class="form-group">
