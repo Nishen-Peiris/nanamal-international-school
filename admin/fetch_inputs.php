@@ -14,7 +14,7 @@ $results = mysqli_query($db, $query);
 <?php while ($row = mysqli_fetch_array($results)):; ?>
     <div class="form-group subject_list" id="subject_list">
         <label for="subject"><?php echo $row['subject']; ?></label>
-        <input type="text" class="form-control" name="subject_results[]">
+        <input type="number" class="form-control" name="subject_results[]" min="0" max="100">
         <input type="text" class="hidden" name="subject_IDs[]" value="<?= $row['subject_id'] ?>"/>
     </div>
 <?php endwhile; ?>

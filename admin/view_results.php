@@ -45,9 +45,19 @@ $grades = mysqli_query($db, $query);
             ?>
         </select>
     </div>
+    <div class="form-group">
+        <label>Term</label>
+    </div>
+    <div class="form-group">
+        <select class="dropdown_fixed" name="term_list" id="term_list" style="height: 34px; color: black;">
+            <option value="1">First</option>
+            <option value="2">Second</option>
+            <option value="3">Third</option>
+        </select>
+    </div>
     <button class="btn btn-success" id="show_results" onclick="fetchResults()">Show</button>
     <div class="result_row">
-        <div class="form-group results_list" id="results_list">
+        <div class="form-group results_list" id="results_list" style="width: 200%">
             <!-- results list is loaded here -->
         </div>
     </div>
@@ -58,7 +68,7 @@ $grades = mysqli_query($db, $query);
 <script>
     // fetch results of the student for the given grade
     function fetchResults() {
-        var grade, year;
+        var grade, year, term;
         var e = document.getElementById("year_list");
         year = e.options[e.selectedIndex].value;
         if (year = "") {
@@ -70,20 +80,28 @@ $grades = mysqli_query($db, $query);
                 alert('Please select a grade');
             } else {
                 var e = document.getElementById("year_list");
-                year = e.options[e.selectedIndex].value;
-                // all inputs are valid, therefore proceed
-                if (window.XMLHttpRequest) {
-                    xmlhttp = new XMLHttpRequest(); // code for IE7+, Firefox, Chrome, Opera, Safari
+                term = e.options[e.selectedIndex].value;
+                if (term = "") {
+                    alert('Select the term.');
                 } else {
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // code for IE6, IE5
-                }
-                xmlhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("results_list").innerHTML = this.responseText;
+                    var e = document.getElementById("year_list");
+                    year = e.options[e.selectedIndex].value;
+                    var e = document.getElementById("term_list");
+                    term = e.options[e.selectedIndex].value;
+                    // all inputs are valid, therefore proceed
+                    if (window.XMLHttpRequest) {
+                        xmlhttp = new XMLHttpRequest(); // code for IE7+, Firefox, Chrome, Opera, Safari
+                    } else {
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // code for IE6, IE5
                     }
-                };
-                xmlhttp.open("GET", "fetch_results.php?grade=" + grade + "&year=" + year, true);
-                xmlhttp.send();
+                    xmlhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("results_list").innerHTML = this.responseText;
+                        }
+                    };
+                    xmlhttp.open("GET", "fetch_results.php?grade=" + grade + "&year=" + year + "&term=" + term, true);
+                    xmlhttp.send();
+                }
             }
         }
     }

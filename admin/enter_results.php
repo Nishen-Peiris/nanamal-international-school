@@ -84,6 +84,16 @@ $grades = mysqli_query($db, $query);
                             ?>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label>Term</label>
+                    </div>
+                    <div class="form-group">
+                        <select class="dropdown_fixed" name="term_list" id="term_list" style="height: 34px">
+                            <option value="1">First</option>
+                            <option value="2">Second</option>
+                            <option value="3">Third</option>
+                        </select>
+                    </div>
                     <div class="result_row">
                         <div class="form-group subject_list " id="subject_list">
                             <!-- subject list is loaded here -->
