@@ -28,7 +28,7 @@
                             <li><a class="menuitem">Results</a>
                                 <ul class="submenu">
                                     <li><a href="enter_results.php">Add Results</a> </li>
-                                    <li><a>View Results</a> </li>
+                                    <li><a href="view_results.php">View Results</a> </li>
                                 </ul>
                             </li>
 

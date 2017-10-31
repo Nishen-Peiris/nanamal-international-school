@@ -33,7 +33,7 @@ $grades = mysqli_query($db, $query);
                         <li><a class="menuitem">Results</a>
                             <ul class="submenu">
                                 <li><a href="enter_results.php">Add Results</a></li>
-                                <li><a>View Results</a></li>
+                                <li><a href="view_results.php">View Results</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -59,7 +59,7 @@ $grades = mysqli_query($db, $query);
                                onkeyup="showStudentName(this.value)">
                     </div>
                     <div class="form-group">
-                        <label>Select the grade </label>
+                        <label>Select the grade</label>
                     </div>
                     <div class="form-group">
                         <select class="dropdown_fixed" name="grade_list" id="grade_list" style="height: 34px">
@@ -68,6 +68,19 @@ $grades = mysqli_query($db, $query);
                             while ($row = mysqli_fetch_array($grades)):;
                                 echo "<option value=\"$row[1]\">$row[1]</option>";
                             endwhile
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Academic year</label>
+                    </div>
+                    <div class="form-group">
+                        <select class="dropdown_fixed" name="year_list" id="year_list" style="height: 34px">
+                            <?php
+                            $year = date("Y");
+                            for ($i = 0; $i < 5; $i++, $year--) {
+                                echo "<option value=\"$year\">$year</option>";
+                            }
                             ?>
                         </select>
                     </div>
