@@ -58,7 +58,7 @@ $grades = mysqli_query($db, $query);
                                required="required"
                                onkeyup="showStudentName(this.value)">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group">E
                         <label>Select the grade</label>
                     </div>
                     <div class="form-group">
@@ -82,6 +82,16 @@ $grades = mysqli_query($db, $query);
                                 echo "<option value=\"$year\">$year</option>";
                             }
                             ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Term</label>
+                    </div>
+                    <div class="form-group">
+                        <select class="dropdown_fixed" name="term_list" id="term_list" style="height: 34px">
+                            <option value="1">First</option>
+                            <option value="2">Second</option>
+                            <option value="3">Third</option>
                         </select>
                     </div>
                     <div class="result_row">
